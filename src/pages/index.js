@@ -7,6 +7,14 @@ import Navigation from '../components/Navigation/navigation';
 
 export default function Home() {
 
+  const { 
+    register, 
+    handleSubmit,
+    formState: { errors, isValid } 
+  } = useForm({mode: 'all'});
+
+  const onSubmit = data => console.log(data);
+
   return (
     <div>
       <Head>
