@@ -28,6 +28,14 @@ export default function Home() {
     return markers
   }
 
+  const [step, setStep] = useState(0)
+
+  const fieldGroups =[
+  <PersonFields/>,
+  <ContactFields/>,
+  <AddressFields/>
+  ]
+
   return (
     <div>
       <Head>
