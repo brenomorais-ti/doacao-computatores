@@ -50,6 +50,13 @@ export default function Home() {
       <main className={styles.main}>
        
           <h1>User Register</h1>
+
+          <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+          <h1>User Register</h1>
+          {fieldGroups[step]}
+          <Navigation fieldGroups={fieldGroups} step={step} setStep={setStep} isValid />
+          <Reference/>
+        </form>
           
       </main>
       
