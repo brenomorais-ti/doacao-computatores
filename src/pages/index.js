@@ -15,6 +15,19 @@ export default function Home() {
 
   const onSubmit = data => console.log(data);
 
+  /** Mark the input group already filled as blue or gray if not */
+  const Reference = () =>(
+    <footer className={styles.reference}>
+      {renderMarkers()}
+    </footer>
+  )
+  function renderMarkers(){
+    let markers = []
+    for(let i=0; i<fieldGroups.length; i++)
+      markers.push(<span className={step >= i ? styles.markerBlue : styles.markerGray} />)
+    return markers
+  }
+
   return (
     <div>
       <Head>
