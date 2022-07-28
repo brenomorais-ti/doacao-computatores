@@ -12,3 +12,5 @@ const PersonFields = () =>(
       <Input errors={errors} register={register} label="deviceCount" required type="text" placeholder="Quantidade"/>
     </section>
   )
+
+  export default PersonFields;
