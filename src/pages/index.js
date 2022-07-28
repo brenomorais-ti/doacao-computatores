@@ -2,8 +2,10 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react';
-import Input from '../components/Input'
-import Navigation from '../components/Navigation/navigation';
+import Input from '../components/Input/index'
+import Navigation from '../components/Navigation/index';
+import PersonFields from '../components/PersonFields';
+import EquipmentSpecification from '../components/EquipmentSpecification';
 
 export default function Home() {
 
@@ -31,9 +33,8 @@ export default function Home() {
   const [step, setStep] = useState(0)
 
   const fieldGroups =[
-  <PersonFields/>,
-  <ContactFields/>,
-  <AddressFields/>
+  <PersonFields errors={errors} register={register}/>,
+  <EquipmentSpecification errors={errors} register={register}/>
   ]
 
   return (
@@ -52,7 +53,6 @@ export default function Home() {
           <h1>User Register</h1>
 
           <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-          <h1>User Register</h1>
           {fieldGroups[step]}
           <Navigation fieldGroups={fieldGroups} step={step} setStep={setStep} isValid />
           <Reference/>
