@@ -1,4 +1,8 @@
-const PersonFields = () =>(
+import styles from '../../styles/Home.module.css'
+import Input from '../Input';
+
+const PersonFields = ({register, errors}) =>{
+  return(
     <section className={styles.inputGroup}>
       <h3>Personal information</h3>
       <Input errors={errors} register={register} label="name" required type="text" placeholder="Ex: Nome Completo"/>
@@ -12,5 +16,6 @@ const PersonFields = () =>(
       <Input errors={errors} register={register} label="deviceCount" required type="text" placeholder="Quantidade"/>
     </section>
   )
+}
 
   export default PersonFields;
