@@ -1,5 +1,9 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
+import { useForm } from 'react-hook-form'
+import { useState } from 'react';
+import Input from '../components/Input'
+import Navigation from '../components/Navigation/navigation';
 
 export default function Home() {
 
