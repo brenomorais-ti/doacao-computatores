@@ -1,7 +1,7 @@
 import styles from '../../styles/Home.module.css'
 import Input from '../Input';
 
-const EquipmentSpecification = ({register, errors}) => {
+const DeviceFields = ({register, errors}) => {
     return (
     <section className={styles.inputGroup}>
       <h3>Especificações</h3>
@@ -10,4 +10,4 @@ const EquipmentSpecification = ({register, errors}) => {
     </section>
   )
 }
-  export default EquipmentSpecification;
+  export default DeviceFields;

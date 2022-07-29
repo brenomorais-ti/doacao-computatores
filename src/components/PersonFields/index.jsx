@@ -13,7 +13,7 @@ const PersonFields = ({register, errors}) =>{
       <Input errors={errors} register={register} label="streetAddress" required type="text" placeholder="Rua, Av"/>
       <Input errors={errors} register={register} label="number" required type="text" placeholder="nº 000"/>
       <Input errors={errors} register={register} label="complement" required type="text" placeholder="Ex: proximo ao supermercado"/>
-      <Input errors={errors} register={register} label="deviceCount" required type="text" placeholder="Quantidade"/>
+      <Input errors={errors} register={register} label="deviceCount" required type="text" placeholder="Quantidade" />
     </section>
   )
 }
