@@ -16,11 +16,7 @@ export default function Home() {
     formState: { errors, isValid } 
   } = useForm({mode: 'all'});
 
-  const [qtdDevice, setQtdDevice] = useState('')
-
   const onSubmit = data => console.log(data);
-
-  const [step, setStep] = useState(0)
   
   function PutANumber(props) {
     return (
@@ -61,9 +57,7 @@ export default function Home() {
             SAVE
           </button>
 
-        </form>
-
-        
+        </form>   
       </main>
     </div>
   )
