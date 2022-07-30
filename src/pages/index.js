@@ -41,7 +41,7 @@ export default function Home() {
 
       <main className={styles.main}>
        
-        <h1>User Register</h1>
+        <h1 className={styles.h1}>Doação de Equipamentos Usados</h1>
 
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
           <PersonFields errors={errors} register={register}/>
@@ -49,15 +49,14 @@ export default function Home() {
               <PutANumber teste={a + n} teste2={b + n} n={n++} key={index} />
             ))}
 
-          <button 
+          <button
             type="submit" 
             className={styles.submitButton} 
             disabled={!isValid}
           >
             SAVE
-          </button>
-
-        </form>   
+          </button> 
+        </form>
       </main>
     </div>
   )

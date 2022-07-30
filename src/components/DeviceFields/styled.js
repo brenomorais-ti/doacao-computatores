@@ -8,7 +8,7 @@ export const AreaFotm = styled.div`
     .container{
         display: flex;
         justify-content: center;
-        background-color: LightBlue;
+        background-color: #35919B;
         font-size: 10pt;
         font-weight: bold;
         color: white;

@@ -1,7 +1,6 @@
 import styles from '../../styles/Home.module.css'
 
 const Input = ({name, label, required, type, placeholder, register, errors}) => {
-    var teste= []
     return (
       <div>
         <legend>{name}</legend>
