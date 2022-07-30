@@ -12,6 +12,7 @@ export default function Home() {
   const { 
     register, 
     getValues,
+    setValue,
     handleSubmit,
     formState: { errors, isValid } 
   } = useForm({mode: 'all'});
@@ -30,6 +31,10 @@ export default function Home() {
   var b = "phone"
   var n = 1
 
+  function myFunction(){
+    console.log('teste')
+  }
+
   return (
     <div>
       <Head>
@@ -44,7 +49,8 @@ export default function Home() {
         <h1 className={styles.h1}>Doação de Equipamentos Usados</h1>
 
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-          <PersonFields errors={errors} register={register}/>
+          <PersonFields errors={errors} register={register} teste={myFunction()}/>
+
           {Array.from({length: getValues('deviceCount')}).map((_, index) => (
               <PutANumber teste={a + n} teste2={b + n} n={n++} key={index} />
             ))}
@@ -57,6 +63,8 @@ export default function Home() {
             SAVE
           </button> 
         </form>
+
+
       </main>
     </div>
   )
