@@ -21,24 +21,20 @@ export default function Home() {
   const onSubmit = data => console.log(data);
 
   const [step, setStep] = useState(0)
-
-  function teste () {
-    return(
-      
-      <DeviceFields errors={errors} register={register}/>
-    )
-  }
-
-  function PutANumber() {
+  
+  function PutANumber(props) {
     return (
     <div>
-      <form>
-      <DeviceFields errors={errors} register={register}/>
-      </form>
+      
+      <DeviceFields errors={errors} register={register} props={props.teste} props1={props.teste2}/>
+      
     </div>
     )
   }
 
+  var a = "equipamento"
+  var b = "phone"
+  var n = 1
 
   return (
     <div>
@@ -55,23 +51,20 @@ export default function Home() {
           <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
           <PersonFields errors={errors} register={register}/>
 
-          </form>
-           
           <button 
-            type="button" 
-            className={styles.nextButton} 
-            disabled={!isValid} 
-            onClick={()=>{ teste(getValues('deviceCount'))}}
-            >
-            NEXT
-            </button>  
+            type="submit" 
+            className={styles.submitButton} 
+            disabled={!isValid}
+        >
+            SAVE
+        </button>
 
-
-    <div>
-      {Array.from({length: getValues('deviceCount')}).map((_, index) => (
-        <PutANumber key={index} />
-      ))}
-    </div>
+          </form>
+          <div>
+          {Array.from({length: getValues('deviceCount')}).map((_, index) => (
+              <PutANumber teste={a + n} teste2={b + n} n={n++} key={index} />
+            ))}
+          </div>
 
       </main>
       
