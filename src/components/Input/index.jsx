@@ -1,16 +1,14 @@
-import styles from '../../styles/Home.module.css'
-
-const Input = ({label, required, type, placeholder, register, errors}) => {
+const Input = (props) => {
   return (
-    <div>
-      <legend>{label}</legend>
-      <input 
-        {...register(label, { required })} 
-        className={errors[label] && styles.inputInvalid}
-        type={type} placeholder={placeholder}
-        />
-      {errors[label] && <span>mandatory</span>}
-    </div>
+    <>
+      <legend>{props.label}</legend>
+      <input
+        type={props.type} 
+        placeholder={props.placeholder}
+        name={props.name} 
+        onChange={props.onChange}
+        required={props.required} />
+    </>
   )
 }
 
