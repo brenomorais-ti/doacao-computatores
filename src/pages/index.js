@@ -31,11 +31,11 @@ export default function Home() {
     newDevice[index][name]=value
     setDevice(newDevice)
   }
+//criei esse objeto vazio 
 
   var teste = {}
-
+// fiz essa função para receber o valor e o nome do campo e inserir no objeto
   function setList(value, name){
-    var name = name
     teste[name] = value 
   }
 
@@ -47,7 +47,10 @@ export default function Home() {
           name={'name'}
           type={'text'}
           placeholder={'Tipo do Dispositivo'}
-          onChange={({currentTarget:{value, name}}) => setList(value, name)} 
+          onChange={({currentTarget:{value, name}}) => setList(value, name)} /*inseri um onChange para 
+                                                                                capturar o valor e o nome 
+                                                                                do campo e chamar a função q
+                                                                                insere os dados no objeto*/
         />
         
         <Input 
