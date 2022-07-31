@@ -12,13 +12,28 @@ export default function Home() {
     formState: { errors, isValid } 
   } = useForm({mode: 'all'});
 
-  const onSubmit = data =>{
-    data.device = device
-    console.log(data)
-    console.log(teste)
-    alert( 'teste')
-  };
+  const onSubmit = data => {
+    console.log(form1)
+    console.log(device)
+    const payload = {...form1, device: [...device]}
+    console.log(payload)
+    alert(JSON.stringify(payload))
+  }
   
+  const [form1, setForm1] = useState  ({
+    name:'',
+    email:'',
+    phone:'',
+    zip:'',
+    city:'',
+    state:'',
+    streetAddress:'',
+    number:'',
+    complement:'',
+    neighborhood:'',
+    deviceCount:''
+  })
+
   const [device, setDevice] = useState([])
   
   function rendlerList(value=0){
@@ -31,109 +46,15 @@ export default function Home() {
     newDevice[index][name]=value
     setDevice(newDevice)
   }
-//criei esse objeto vazio 
 
-  var teste = {}
-// fiz essa função para receber o valor e o nome do campo e inserir no objeto
-  function setList(value, name){
-    teste[name] = value 
-  }
+  //OBJETO TESTE
+  //var teste = {}
 
-  function Form() {
-    return (
-      <>
-        <Input
-          label={'Nome'}
-          name={'name'}
-          type={'text'}
-          placeholder={'Tipo do Dispositivo'}
-          onChange={({currentTarget:{value, name}}) => setList(value, name)} /*inseri um onChange para 
-                                                                                capturar o valor e o nome 
-                                                                                do campo e chamar a função q
-                                                                                insere os dados no objeto*/
-        />
-        
-        <Input 
-          label={'E-mail'} 
-          name={'email'} 
-          type={'text'}
-          placeholder={'example@example.com'} 
-          onChange={({currentTarget:{value, name}}) => setList(value, name)} 
-        />
-
-        <Input 
-          label={'Telefone'} 
-          name={'phone'} 
-          type={'text'}
-          placeholder={'(00) 0000-0000'} 
-          onChange={({currentTarget:{value, name}}) => setList(value, name)} 
-        />
-          
-        <Input 
-          label={'CEP'} 
-          name={'zip'} 
-          type={'text'}
-          placeholder={'00000-000'} 
-          onChange={({currentTarget:{value, name}}) => setList(value, name)} 
-        />
-        
-        <Input 
-          label={'Cidade'} 
-          name={'city'} 
-          type={'text'}
-          placeholder={'Cidade'}
-          onChange={({currentTarget:{value, name}}) => setList(value, name)} 
-        />
-
-        <Input 
-          label={'UF'} 
-          name={'state'} 
-          type={'text'}
-          placeholder={'UF'}
-          onChange={({currentTarget:{value, name}}) => setList(value, name)} 
-        />
-
-        <Input 
-          label={'Rua/Av'} 
-          name={'streetAddress'} 
-          type={'text'}
-          placeholder={'Rua/Av'} 
-          onChange={({currentTarget:{value, name}}) => setList(value, name)} 
-        />
-
-        <Input 
-          label={'Nº'} 
-          name={'number'} 
-          type={'text'}
-          placeholder={'Número'} 
-          onChange={({currentTarget:{value, name}}) => setList(value, name)}
-        />
-
-        <Input 
-          label={'Complemento'} 
-          name={'comprement'} 
-          type={'text'}
-          placeholder={'Complemento'} 
-          onChange={({currentTarget:{value, name}}) => setList(value, name)} 
-        />
-
-        <Input 
-          label={'Ponto de referência'} 
-          name={'neighborhood'} 
-          type={'text'}
-          placeholder={'Ponto de referência'} 
-          onChange={({currentTarget:{value, name}}) => setList(value, name)} 
-        />
-        
-        <Input
-          label={'Quantidade de Dispositivos'}
-          name={'device'}
-          type={'number'}
-          placeholder={'Quantidade de Dispositivos'}
-          onChange={
-            (e) => rendlerList(e.currentTarget.value)} />
-      </>
-    )
+  function setList (value, name){
+   // teste[name] = value
+   const newForm = {...form1}
+   newForm[name]=value
+   setForm1(newForm)
   }
 
   return (
@@ -149,7 +70,97 @@ export default function Home() {
         <h1 className={styles.h1}>Doação de Equipamentos Usados</h1>
 
         <form onSubmit={onSubmit}>
-          <Form /> 
+          <Input 
+            required
+            label={'Nome'}
+            name={'name'} 
+            type={'text'}
+            placeholder={'Nome completo'} 
+            onChange={({currentTarget:{value, name}}) => {
+              setList(value, name)}} />
+
+          <Input 
+            label={'E-mail'} 
+            name={'email'} 
+            type={'text'}
+            placeholder={'example@example.com'} 
+            onChange={({currentTarget:{value, name}}) => {
+              setList(value, name)}} />
+
+          <Input 
+            label={'Telefone'} 
+            name={'phone'} 
+            type={'text'}
+            placeholder={'(00) 0000-0000'} 
+            onChange={({currentTarget:{value, name}}) => {
+              setList(value, name)}} />
+
+
+          <Input 
+            label={'CEP'} 
+            name={'zip'} 
+            type={'text'}
+            placeholder={'00000-000'} 
+            onChange={({currentTarget:{value, name}}) => {
+              setList(value, name)}} />
+
+          
+          <Input 
+            label={'Cidade'} 
+            name={'city'} 
+            type={'text'}
+            placeholder={'Cidade'} 
+            onChange={({currentTarget:{value, name}}) => {
+              setList(value, name)}} />
+
+          <Input 
+            label={'UF'} 
+            name={'state'} 
+            type={'text'}
+            placeholder={'UF'} 
+            onChange={({currentTarget:{value, name}}) => {
+              setList(value, name)}} />
+
+          <Input 
+            label={'Rua/Av'} 
+            name={'streetAddress'} 
+            type={'text'}
+            placeholder={'Rua/Av'} 
+            onChange={({currentTarget:{value, name}}) => {
+              setList(value, name)}} />
+
+          <Input 
+            label={'Nº'} 
+            name={'number'} 
+            type={'text'}
+            placeholder={'Número'} 
+            onChange={({currentTarget:{value, name}}) => {
+              setList(value, name)}} />
+
+          <Input 
+            label={'Complemento'} 
+            name={'comprement'} 
+            type={'text'}
+            placeholder={'Complemento'} 
+            onChange={({currentTarget:{value, name}}) => {
+              setList(value, name)}} />
+
+          <Input 
+            label={'Ponto de referência'} 
+            name={'neighborhood'} 
+            type={'text'}
+            placeholder={'Ponto de referência'} 
+            onChange={({currentTarget:{value, name}}) => {
+              setList(value, name)}} />
+          
+          <Input
+            label={'Quantidade de Dispositivos'}
+            name={'device'}
+            type={'number'}
+            placeholder={'Quantidade de Dispositivos'}
+            onChange={
+              (e) => rendlerList(e.currentTarget.value)} />
+            
           {
             device.map((_, index) => (
             <>
@@ -174,7 +185,6 @@ export default function Home() {
             SAVE
           </button> 
         </form>
-        
       </main>
     </div>
   )

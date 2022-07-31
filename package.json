@@ -9,6 +9,7 @@
 		"lint": "eslint src"
 	},
 	"dependencies": {
+		"axios": "^0.27.2",
 		"bootstrap": "^4.6.0",
 		"next": "latest",
 		"react": "^17.0.2",
