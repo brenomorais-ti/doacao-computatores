@@ -3,6 +3,7 @@ const Input = (props) => {
     <>
       <legend>{props.label}</legend>
       <input
+        min={0}
         type={props.type} 
         placeholder={props.placeholder}
         name={props.name} 

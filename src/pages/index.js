@@ -1,26 +1,45 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import { useForm } from 'react-hook-form'
-import { useState } from 'react';
-import Input from '../components/Input';
+import { useState } from 'react'
+import Input from '../components/Input'
+import Select from '../components/Select'
+import axios from 'axios'
 
 export default function Home() {
-  const { 
-    register, 
-    getValues,
-    handleSubmit,
-    formState: { errors, isValid } 
-  } = useForm({mode: 'all'});
 
-  const onSubmit = data => {
-    console.log(form1)
-    console.log(device)
-    const payload = {...form1, device: [...device]}
-    console.log(payload)
-    alert(JSON.stringify(payload))
+  const onSubmit = () => {
+    const payload = {...form, device: [...device]}
+    axios.post('https://doar-computador-api.herokuapp.com/donation', {payload})
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        if(error.response.status == 400)
+          alert(error.response.data.errorMessage)
+        if(error.response.status == (500 || 501))
+          alert('O servidor falhou em responder. Tente mais tarde.')
+      })
   }
   
-  const [form1, setForm1] = useState  ({
+//opcoes de equipamentos
+  const typeDevice = [
+    {name: 'Notebook', value:'notebook'},
+    {name: 'Desktop', value:'desktop'},
+    {name: 'Netbook', value:'netbook'},
+    {name: 'Monitor', value:'screen'},
+    {name: 'Impressora', value:'printer'},
+    {name: 'Scanner', value:'scanner'}
+  ]
+//opcoes de estado de uso dos equipamentos  
+  const conditionDevice =[
+    {name: 'Tem todas as partes, liga e funciona normalmente', value: 'working'},
+    {name: 'Tem todas as partes, mas não liga mais', value: 'notWorking'},
+    {name:'Faltam peças, funciona só as vezes ou está quebrado', value: 'broken'}
+  ]
+
+  //Formulario inicial
+    //insere os elementos no objeto form
+  const [form, setForm] = useState  ({
     name:'',
     email:'',
     phone:'',
@@ -34,6 +53,13 @@ export default function Home() {
     deviceCount:''
   })
 
+  function setList (value, name){
+    const newForm = {...form}
+    newForm[name]=value
+    setForm(newForm)
+  }
+
+  //cria os novos compos dinamocos e insere as opcoes escolhidas em um array de objetos
   const [device, setDevice] = useState([])
   
   function rendlerList(value=0){
@@ -41,21 +67,21 @@ export default function Home() {
     setDevice(newDevice)
   }
 
-  function atualizaDevice(value, name, index){
+  function deviceUpdate(value, name, index){
     const newDevice = [...device]
     newDevice[index][name]=value
     setDevice(newDevice)
   }
 
-  //OBJETO TESTE
-  //var teste = {}
+//cep
 
-  function setList (value, name){
-   // teste[name] = value
-   const newForm = {...form1}
-   newForm[name]=value
-   setForm1(newForm)
-  }
+const checkCEP = (e) => {
+  const cep = e.target.value.replace(/\D/g, '')
+  fetch(`https://viacep.com.br/ws/${cep}/json/`)
+    .then(res => res.json()).then(data => {
+      console.log(data)
+    })
+} 
 
   return (
     <div>
@@ -69,7 +95,7 @@ export default function Home() {
       <main className={styles.main}>
         <h1 className={styles.h1}>Doação de Equipamentos Usados</h1>
 
-        <form onSubmit={onSubmit}>
+        <form>
           <Input 
             required
             label={'Nome'}
@@ -82,12 +108,13 @@ export default function Home() {
           <Input 
             label={'E-mail'} 
             name={'email'} 
-            type={'text'}
+            type={'email'}
             placeholder={'example@example.com'} 
             onChange={({currentTarget:{value, name}}) => {
               setList(value, name)}} />
 
-          <Input 
+          <Input
+            required
             label={'Telefone'} 
             name={'phone'} 
             type={'text'}
@@ -95,25 +122,25 @@ export default function Home() {
             onChange={({currentTarget:{value, name}}) => {
               setList(value, name)}} />
 
-
-          <Input 
+          <Input
+            required
             label={'CEP'} 
             name={'zip'} 
             type={'text'}
             placeholder={'00000-000'} 
-            onChange={({currentTarget:{value, name}}) => {
-              setList(value, name)}} />
+            onChange={checkCEP} />
 
-          
           <Input 
+            required
             label={'Cidade'} 
             name={'city'} 
             type={'text'}
             placeholder={'Cidade'} 
-            onChange={({currentTarget:{value, name}}) => {
+            onBlur={({currentTarget:{value, name}}) => {
               setList(value, name)}} />
 
-          <Input 
+          <Input
+            required
             label={'UF'} 
             name={'state'} 
             type={'text'}
@@ -122,16 +149,18 @@ export default function Home() {
               setList(value, name)}} />
 
           <Input 
-            label={'Rua/Av'} 
+            required
+            label={'Endereço'} 
             name={'streetAddress'} 
             type={'text'}
             placeholder={'Rua/Av'} 
             onChange={({currentTarget:{value, name}}) => {
               setList(value, name)}} />
 
-          <Input 
+          <Input
+            required
             label={'Nº'} 
-            name={'number'} 
+            name={'number'}
             type={'text'}
             placeholder={'Número'} 
             onChange={({currentTarget:{value, name}}) => {
@@ -145,8 +174,9 @@ export default function Home() {
             onChange={({currentTarget:{value, name}}) => {
               setList(value, name)}} />
 
-          <Input 
-            label={'Ponto de referência'} 
+          <Input
+            required
+            label={'Bairro'} 
             name={'neighborhood'} 
             type={'text'}
             placeholder={'Ponto de referência'} 
@@ -154,6 +184,7 @@ export default function Home() {
               setList(value, name)}} />
           
           <Input
+            required
             label={'Quantidade de Dispositivos'}
             name={'device'}
             type={'number'}
@@ -164,25 +195,27 @@ export default function Home() {
           {
             device.map((_, index) => (
             <>
-              <Input
-                label={'Equipamento'}
-                name={'type'}
+              <Select 
+                required
+                label={'Equipamento'} 
+                name={'type'} 
                 type={'text'}
-                placeholder={'Tipo do Dispositivo'}
+                items={typeDevice}
                 onChange={({currentTarget:{value, name}}) => {
-                  atualizaDevice(value, name, index)}} />
+                  deviceUpdate(value, name, index)}}/>
 
-              <Input
-                label={'Estado'}
-                name={'condition'}
+              <Select
+                required
+                label={'Estado'} 
+                name={'Condition'} 
                 type={'text'}
-                placeholder={'Condição do Dispositivo'}
+                items={conditionDevice}
                 onChange={({currentTarget:{value, name}}) => {
-                  atualizaDevice(value, name, index)}} />
+                  deviceUpdate(value, name, index)}}/>
             </>))
           }
-          <button type="submit">
-            SAVE
+          <button onClick={onSubmit}>
+            SALVAR
           </button> 
         </form>
       </main>
