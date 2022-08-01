@@ -8,7 +8,7 @@ import axios from 'axios'
 export default function Home() {
 
   const onSubmit = () => {
-    const payload = {...form, device: [...device]}
+   const payload = {...form, device: [...device]}
     axios.post('https://doar-computador-api.herokuapp.com/donation', {payload})
       .then((response) => {
         console.log(response);
@@ -73,14 +73,23 @@ export default function Home() {
     setDevice(newDevice)
   }
 
-
-  //CEP ()
+  //CEP 
   const checkCEP = (e) => {
-    const cep = e.target.value.replace(/\D/g, '')
+    const cep = e.currentTarget.value.replace(/\D/g, '')
+    if(!cep.length)return
     fetch(`https://viacep.com.br/ws/${cep}/json/`)
       .then(res => res.json()).then(data => {
         console.log(data)
+        const response = {
+          ...form,
+          neighborhood: data.bairro,
+          city: data.localidade,
+          state: data.uf,
+          streetAddress: data.logradouro
+        }
+        setForm(response)
       })
+      .catch(() => alert("CEP invalido"))
 } 
 
   return (
@@ -127,20 +136,21 @@ export default function Home() {
             name={'zip'} 
             type={'text'}
             placeholder={'00000-000'} 
-            onChange={({currentTarget:{value, name}}) => {
-              setList(value, name)}} />
+            onBlur={checkCEP} />
 
           <Input 
             required
+            value={form.city}
             label={'Cidade'} 
             name={'city'} 
             type={'text'}
             placeholder={'Cidade'} 
-            onBlur={({currentTarget:{value, name}}) => {
+            onChange={({currentTarget:{value, name}}) => {
               setList(value, name)}} />
 
           <Input
             required
+            value={form.state}
             label={'UF'} 
             name={'state'} 
             type={'text'}
@@ -150,6 +160,7 @@ export default function Home() {
 
           <Input 
             required
+            value={form.streetAddress}
             label={'Endereço'} 
             name={'streetAddress'} 
             type={'text'}
@@ -176,6 +187,7 @@ export default function Home() {
 
           <Input
             required
+            value={form.neighborhood}
             label={'Bairro'} 
             name={'neighborhood'} 
             type={'text'}
