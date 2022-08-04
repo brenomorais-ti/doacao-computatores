@@ -9,16 +9,18 @@ export default function Home() {
 
   const onSubmit = () => {
    const payload = {...form, device: [...device]}
-    axios.post('https://doar-computador-api.herokuapp.com/donation', {payload})
+    axios.post('https://doar-computadores-test.herokuapp.com/donation', {payload})
       .then((response) => {
         console.log(response);
       })
       .catch((error) => {
+        console.log(error)
         if(error.response.status == 400)
           alert(error.response.data.errorMessage)
         if(error.response.status == (500 || 501))
           alert('O servidor falhou em responder. Tente mais tarde.')
       })
+      alert(JSON.stringify(device))
   }
   
 //opcoes de equipamentos
@@ -85,9 +87,10 @@ export default function Home() {
           neighborhood: data.bairro,
           city: data.localidade,
           state: data.uf,
-          streetAddress: data.logradouro
+          streetAddress: data.logradouro,
         }
         setForm(response)
+        console.log(response)
       })
       .catch(() => alert("CEP invalido"))
 } 
@@ -135,7 +138,9 @@ export default function Home() {
             label={'CEP'} 
             name={'zip'} 
             type={'text'}
-            placeholder={'00000-000'} 
+            placeholder={'00000-000'}
+            onChange={({currentTarget:{value, name}}) => {
+              setList(value, name)}}
             onBlur={checkCEP} />
 
           <Input 
@@ -164,7 +169,7 @@ export default function Home() {
             label={'Endereço'} 
             name={'streetAddress'} 
             type={'text'}
-            placeholder={'Rua/Av'} 
+            placeholder={'Rua/Av'}
             onChange={({currentTarget:{value, name}}) => {
               setList(value, name)}} />
 
@@ -177,11 +182,12 @@ export default function Home() {
             onChange={({currentTarget:{value, name}}) => {
               setList(value, name)}} />
 
-          <Input 
+          <Input
+            required
             label={'Complemento'} 
-            name={'comprement'} 
+            name={'complement'}
             type={'text'}
-            placeholder={'Complemento'} 
+            placeholder={'Número'} 
             onChange={({currentTarget:{value, name}}) => {
               setList(value, name)}} />
 
@@ -198,9 +204,11 @@ export default function Home() {
           <Input
             required
             label={'Quantidade de Dispositivos'}
-            name={'device'}
+            name={'deviceCount'}
             type={'number'}
             placeholder={'Quantidade de Dispositivos'}
+            onInput={({currentTarget:{value, name}}) => {
+              setList(value, name)}}
             onChange={
               (e) => rendlerList(e.currentTarget.value)} />
             

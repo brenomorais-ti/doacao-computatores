@@ -9,6 +9,7 @@ const Input = (props) => {
         placeholder={props.placeholder}
         name={props.name} 
         onChange={props.onChange}
+        onInput={props.onInput}
         onBlur={props.onBlur}
         required={props.required} />
     </>
