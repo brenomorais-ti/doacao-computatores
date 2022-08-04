@@ -8,18 +8,20 @@ import axios from 'axios'
 export default function Home() {
 
   const onSubmit = () => {
-   const payload = {...form, device: [...device]}
-    axios.post('https://doar-computadores-test.herokuapp.com/donation', {payload})
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error)
-        if(error.response.status == 400)
-          alert(error.response.data.errorMessage)
-        if(error.response.status == (500 || 501))
-          alert('O servidor falhou em responder. Tente mais tarde.')
-      })
+   const payload = {...form, devices: [...device]}
+
+   axios.post('https://doar-computadores-test.herokuapp.com/donation', payload)
+   .then(response => {
+     alert(JSON.stringify(response.data))
+     console.log(response.data)
+   })
+   .catch((error) => {
+    console.log(error)
+    if(error.response.status == 400)
+      alert(error.response.data.errorMessage)
+    if(error.response.status == (500 || 501))
+      alert('O servidor falhou em responder. Tente mais tarde.')
+  })
       alert(JSON.stringify(device))
   }
   
@@ -42,17 +44,17 @@ export default function Home() {
   //Formulario inicial
     //insere os elementos no objeto form
   const [form, setForm] = useState  ({
-    name:'',
-    email:'',
-    phone:'',
-    zip:'',
-    city:'',
-    state:'',
-    streetAddress:'',
-    number:'',
-    complement:'',
-    neighborhood:'',
-    deviceCount:''
+    name: "",
+    email: "",
+    phone: "",
+    zip: "",
+    city: "",
+    state: "",
+    streetAddress: "",
+    number: "",
+    complement: "",
+    neighborhood: "",
+    deviceCount: "",
   })
 
   function setList (value, name){
@@ -81,7 +83,6 @@ export default function Home() {
     if(!cep.length)return
     fetch(`https://viacep.com.br/ws/${cep}/json/`)
       .then(res => res.json()).then(data => {
-        console.log(data)
         const response = {
           ...form,
           neighborhood: data.bairro,
@@ -90,23 +91,26 @@ export default function Home() {
           streetAddress: data.logradouro,
         }
         setForm(response)
-        console.log(response)
       })
       .catch(() => alert("CEP invalido"))
-} 
+}
 
   return (
     <div>
       <Head>
         <title>Amigo do Bem</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"></link>
+       {/* <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"></link>*/}
         <meta name="description" content="Doaçao de computadores" />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.h1}>Doação de Equipamentos Usados</h1>
+      <main className="container">
+        <h1>Doação de Equipamentos Usados</h1>
 
-        <form>
+        <form className="container flex flex-wrap">
+        
+         <h1>Informações Pessoais</h1>
+        
+        <div className="item">
           <Input 
             required
             label={'Nome'}
@@ -115,7 +119,9 @@ export default function Home() {
             placeholder={'Nome completo'} 
             onChange={({currentTarget:{value, name}}) => {
               setList(value, name)}} />
+          </div>
 
+        <div className="item">
           <Input 
             label={'E-mail'} 
             name={'email'} 
@@ -123,7 +129,9 @@ export default function Home() {
             placeholder={'example@example.com'} 
             onChange={({currentTarget:{value, name}}) => {
               setList(value, name)}} />
+        </div>
 
+        <div className="item">
           <Input
             required
             label={'Telefone'} 
@@ -132,7 +140,9 @@ export default function Home() {
             placeholder={'(00) 0000-0000'} 
             onChange={({currentTarget:{value, name}}) => {
               setList(value, name)}} />
+        </div>
 
+        <div className="item">
           <Input
             required
             label={'CEP'} 
@@ -142,7 +152,9 @@ export default function Home() {
             onChange={({currentTarget:{value, name}}) => {
               setList(value, name)}}
             onBlur={checkCEP} />
+        </div>
 
+        <div className="item">
           <Input 
             required
             value={form.city}
@@ -152,9 +164,12 @@ export default function Home() {
             placeholder={'Cidade'} 
             onChange={({currentTarget:{value, name}}) => {
               setList(value, name)}} />
+        </div>
 
+        <div className="item">
           <Input
             required
+            size={2} 
             value={form.state}
             label={'UF'} 
             name={'state'} 
@@ -162,7 +177,9 @@ export default function Home() {
             placeholder={'UF'} 
             onChange={({currentTarget:{value, name}}) => {
               setList(value, name)}} />
+        </div>
 
+        <div className="item">
           <Input 
             required
             value={form.streetAddress}
@@ -172,16 +189,21 @@ export default function Home() {
             placeholder={'Rua/Av'}
             onChange={({currentTarget:{value, name}}) => {
               setList(value, name)}} />
+        </div>
 
+        <div className="item">
           <Input
             required
+            size={5} 
             label={'Nº'} 
             name={'number'}
             type={'text'}
             placeholder={'Número'} 
             onChange={({currentTarget:{value, name}}) => {
               setList(value, name)}} />
+        </div>
 
+        <div className="item">
           <Input
             required
             label={'Complemento'} 
@@ -190,7 +212,9 @@ export default function Home() {
             placeholder={'Número'} 
             onChange={({currentTarget:{value, name}}) => {
               setList(value, name)}} />
+        </div>
 
+        <div className="item">
           <Input
             required
             value={form.neighborhood}
@@ -200,9 +224,12 @@ export default function Home() {
             placeholder={'Ponto de referência'} 
             onChange={({currentTarget:{value, name}}) => {
               setList(value, name)}} />
-          
+        </div>
+
+        <div className="item">
           <Input
             required
+            size={3} 
             label={'Quantidade de Dispositivos'}
             name={'deviceCount'}
             type={'number'}
@@ -211,10 +238,11 @@ export default function Home() {
               setList(value, name)}}
             onChange={
               (e) => rendlerList(e.currentTarget.value)} />
-            
+          </div>
           {
             device.map((_, index) => (
-            <>
+            <div className="item">
+              <h1>Especificações dos Equipamentos</h1>
               <Select 
                 required
                 label={'Equipamento'} 
@@ -227,17 +255,18 @@ export default function Home() {
               <Select
                 required
                 label={'Estado'} 
-                name={'Condition'} 
+                name={'condition'} 
                 type={'text'}
                 items={conditionDevice}
                 onChange={({currentTarget:{value, name}}) => {
                   deviceUpdate(value, name, index)}}/>
-            </>))
+            </div>))
           }
-          <button onClick={onSubmit}>
-            SALVAR
-          </button> 
         </form>
+
+        <button onClick={onSubmit}>
+          SALVAR
+        </button> 
       </main>
     </div>
   )

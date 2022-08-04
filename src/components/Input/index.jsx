@@ -4,6 +4,7 @@ const Input = (props) => {
       <legend>{props.label}</legend>
       <input
         min={0}
+        size={props.size} 
         value={props.value}
         type={props.type} 
         placeholder={props.placeholder}
