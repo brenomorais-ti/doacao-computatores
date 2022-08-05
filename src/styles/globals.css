@@ -21,6 +21,13 @@ main h2 {
     padding-bottom: 20px;
 }
 
+main img {
+    width: 15rem;
+    height: 10rem;
+    margin-top: 1rem ;
+    margin-bottom: 2rem;
+}
+
 section {
     background-color: #07A0C3;
     padding: 2rem;

@@ -104,8 +104,10 @@ export default function Home() {
        {/* <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"></link>*/}
         <meta name="description" content="Doaçao de computadores" />
       </Head>
+        <div className='image-logo'>
+          <img src="/images/logo.png"/>
+        </div>
 
-        <h2>Doação de Equipamentos Usados</h2>
         <section>
           <h3>Dados Pessoais</h3>
           <form class="form">
