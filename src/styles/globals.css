@@ -150,6 +150,11 @@ button::before {
     section h3 {
         font-size: 1.1rem;
     }
+
+    main .image-logo img {
+        width: 9rem;
+        height: 6rem;
+    }
 }
 
 /*SMARTPHONE-M*/
@@ -174,6 +179,11 @@ button::before {
     section h3 {
         font-size: 1.4rem;
     }
+
+    main .image-logo img {
+        width: 9rem;
+        height: 6rem;
+    }
 }
 
 /*SMARTPHONE-L*/
@@ -188,7 +198,12 @@ button::before {
 
     select {
         width: 14rem;
-    }    
+    }
+    
+    main .image-logo img {
+        width: 10rem;
+        height: 7rem;
+    }
 }
 
 /*------------TABLET-------------*/
@@ -205,6 +220,11 @@ button::before {
     select {
         width: 17rem;
     }
+
+    main .image-logo img {
+        width: 11rem;
+        height: 8rem;
+    }
 }
 
 /*TABLET-M*/
@@ -219,6 +239,11 @@ button::before {
 
     select {
         width: 18rem;
+    }
+
+    main .image-logo img {
+        width: 12rem;
+        height: 9rem;
     }
 
 }
