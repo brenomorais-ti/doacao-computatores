@@ -1,9 +1,11 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
 import { useState } from 'react'
 import Input from '../components/Input'
 import Select from '../components/Select'
 import axios from 'axios'
+
+
+
 
 export default function Home() {
 
@@ -96,178 +98,163 @@ export default function Home() {
 }
 
   return (
-    <div>
+    <main>
       <Head>
         <title>Amigo do Bem</title>
        {/* <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"></link>*/}
         <meta name="description" content="Doaçao de computadores" />
       </Head>
-
-      <main className="container">
-        <h1>Doação de Equipamentos Usados</h1>
-
-        <form className="container flex flex-wrap">
-        
-         <h1>Informações Pessoais</h1>
-        
-        <div className="item">
-          <Input 
-            required
-            label={'Nome'}
-            name={'name'} 
-            type={'text'}
-            placeholder={'Nome completo'} 
-            onChange={({currentTarget:{value, name}}) => {
-              setList(value, name)}} />
-          </div>
-
-        <div className="item">
-          <Input 
-            label={'E-mail'} 
-            name={'email'} 
-            type={'email'}
-            placeholder={'example@example.com'} 
-            onChange={({currentTarget:{value, name}}) => {
-              setList(value, name)}} />
-        </div>
-
-        <div className="item">
-          <Input
-            required
-            label={'Telefone'} 
-            name={'phone'} 
-            type={'text'}
-            placeholder={'(00) 0000-0000'} 
-            onChange={({currentTarget:{value, name}}) => {
-              setList(value, name)}} />
-        </div>
-
-        <div className="item">
-          <Input
-            required
-            label={'CEP'} 
-            name={'zip'} 
-            type={'text'}
-            placeholder={'00000-000'}
-            onChange={({currentTarget:{value, name}}) => {
-              setList(value, name)}}
-            onBlur={checkCEP} />
-        </div>
-
-        <div className="item">
-          <Input 
-            required
-            value={form.city}
-            label={'Cidade'} 
-            name={'city'} 
-            type={'text'}
-            placeholder={'Cidade'} 
-            onChange={({currentTarget:{value, name}}) => {
-              setList(value, name)}} />
-        </div>
-
-        <div className="item">
-          <Input
-            required
-            size={2} 
-            value={form.state}
-            label={'UF'} 
-            name={'state'} 
-            type={'text'}
-            placeholder={'UF'} 
-            onChange={({currentTarget:{value, name}}) => {
-              setList(value, name)}} />
-        </div>
-
-        <div className="item">
-          <Input 
-            required
-            value={form.streetAddress}
-            label={'Endereço'} 
-            name={'streetAddress'} 
-            type={'text'}
-            placeholder={'Rua/Av'}
-            onChange={({currentTarget:{value, name}}) => {
-              setList(value, name)}} />
-        </div>
-
-        <div className="item">
-          <Input
-            required
-            size={5} 
-            label={'Nº'} 
-            name={'number'}
-            type={'text'}
-            placeholder={'Número'} 
-            onChange={({currentTarget:{value, name}}) => {
-              setList(value, name)}} />
-        </div>
-
-        <div className="item">
-          <Input
-            required
-            label={'Complemento'} 
-            name={'complement'}
-            type={'text'}
-            placeholder={'Número'} 
-            onChange={({currentTarget:{value, name}}) => {
-              setList(value, name)}} />
-        </div>
-
-        <div className="item">
-          <Input
-            required
-            value={form.neighborhood}
-            label={'Bairro'} 
-            name={'neighborhood'} 
-            type={'text'}
-            placeholder={'Ponto de referência'} 
-            onChange={({currentTarget:{value, name}}) => {
-              setList(value, name)}} />
-        </div>
-
-        <div className="item">
-          <Input
-            required
-            size={3} 
-            label={'Quantidade de Dispositivos'}
-            name={'deviceCount'}
-            type={'number'}
-            placeholder={'Quantidade de Dispositivos'}
-            onInput={({currentTarget:{value, name}}) => {
-              setList(value, name)}}
-            onChange={
-              (e) => rendlerList(e.currentTarget.value)} />
-          </div>
-          {
-            device.map((_, index) => (
-            <div className="item">
-              <h1>Especificações dos Equipamentos</h1>
-              <Select 
+      
+        <h2>Doação de Equipamentos Usados</h2>
+        <section>
+          <h3>Dados Pessoais</h3>
+          <form class="form">
+            <div className="row">
+              <Input
                 required
-                label={'Equipamento'} 
-                name={'type'} 
+                label={'Nome'}
+                name={'name'} 
                 type={'text'}
-                items={typeDevice}
+                placeholder={'Nome completo'} 
                 onChange={({currentTarget:{value, name}}) => {
-                  deviceUpdate(value, name, index)}}/>
+                  setList(value, name)}} />
+             
+              <Input 
+                label={'E-mail'} 
+                name={'email'} 
+                type={'email'}
+                placeholder={'example@example.com'} 
+                onChange={({currentTarget:{value, name}}) => {
+                  setList(value, name)}} />
+            </div>
 
-              <Select
+            <div className="row">
+              <Input
                 required
-                label={'Estado'} 
-                name={'condition'} 
+                label={'Telefone'} 
+                name={'phone'} 
                 type={'text'}
-                items={conditionDevice}
+                placeholder={'(00) 0000-0000'} 
                 onChange={({currentTarget:{value, name}}) => {
-                  deviceUpdate(value, name, index)}}/>
-            </div>))
-          }
-        </form>
+                  setList(value, name)}} />
+            
+              <Input
+                required
+                label={'CEP'} 
+                name={'zip'} 
+                type={'text'}
+                placeholder={'00000-000'}
+                onChange={({currentTarget:{value, name}}) => {
+                  setList(value, name)}}
+                onBlur={checkCEP} />
+            </div>
 
-        <button onClick={onSubmit}>
-          SALVAR
-        </button> 
+            <div className="row">
+              <Input 
+                required
+                value={form.city}
+                label={'Cidade'} 
+                name={'city'} 
+                type={'text'}
+                placeholder={'Cidade'} 
+                onChange={({currentTarget:{value, name}}) => {
+                  setList(value, name)}} />
+            
+              <Input
+                required
+                size={2} 
+                value={form.state}
+                label={'UF'} 
+                name={'state'} 
+                type={'text'}
+                placeholder={'UF'} 
+                onChange={({currentTarget:{value, name}}) => {
+                  setList(value, name)}} />
+            </div>
+
+            <div className="row">
+              <Input 
+                required
+                value={form.streetAddress}
+                label={'Endereço'} 
+                name={'streetAddress'} 
+                type={'text'}
+                placeholder={'Rua/Av'}
+                onChange={({currentTarget:{value, name}}) => {
+                  setList(value, name)}} />
+           
+              <Input
+                required
+                size={5} 
+                label={'Nº'} 
+                name={'number'}
+                type={'text'}
+                placeholder={'Número'} 
+                onChange={({currentTarget:{value, name}}) => {
+                  setList(value, name)}} />
+            </div>
+
+            <div className="row">
+              <Input
+                required
+                label={'Complemento'} 
+                name={'complement'}
+                type={'text'}
+                placeholder={'Número'} 
+                onChange={({currentTarget:{value, name}}) => {
+                  setList(value, name)}} />
+            
+              <Input
+                required
+                value={form.neighborhood}
+                label={'Bairro'} 
+                name={'neighborhood'} 
+                type={'text'}
+                placeholder={'Ponto de referência'} 
+                onChange={({currentTarget:{value, name}}) => {
+                  setList(value, name)}} />
+            </div>
+            
+            <h3>Dados Pessoais</h3>
+            <Input
+                required
+                size={3} 
+                label={'Quantidade de Dispositivos'}
+                name={'deviceCount'}
+                type={'number'}
+                placeholder={'Quantidade de Dispositivos'}
+                onInput={({currentTarget:{value, name}}) => {
+                  setList(value, name)}}
+                onChange={
+                  (e) => rendlerList(e.currentTarget.value)} />
+              {
+                device.map((_, index) => (
+                <div className="row">
+                  <h1>Especificações dos Equipamentos</h1>
+                  <Select 
+                    required
+                    label={'Equipamento'} 
+                    name={'type'} 
+                    type={'text'}
+                    items={typeDevice}
+                    onChange={({currentTarget:{value, name}}) => {
+                      deviceUpdate(value, name, index)}}/>
+
+                  <Select
+                    required
+                    label={'Estado'} 
+                    name={'condition'} 
+                    type={'text'}
+                    items={conditionDevice}
+                    onChange={({currentTarget:{value, name}}) => {
+                      deviceUpdate(value, name, index)}}/>
+                </div>))
+              }
+            <button className='button' onClick={onSubmit}>
+              SALVAR
+            </button> 
+          </form>
+        </section>
       </main>
-    </div>
   )
 }

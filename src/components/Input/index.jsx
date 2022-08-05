@@ -1,6 +1,6 @@
 const Input = (props) => {
   return (
-    <>
+    <div className='wrapper-input'>
       <legend>{props.label}</legend>
       <input
         min={0}
@@ -13,7 +13,7 @@ const Input = (props) => {
         onInput={props.onInput}
         onBlur={props.onBlur}
         required={props.required} />
-    </>
+    </div>
   )
 }
 
