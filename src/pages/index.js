@@ -10,7 +10,7 @@ import axios from 'axios'
 export default function Home() {
 
   const onSubmit = () => {
-   const payload = {...form, devices: [...device]}
+   const payload = {...form, devices: [...device]} //junção do form com o devices
 
    axios.post('https://doar-computadores-test.herokuapp.com/donation', payload)
    .then(response => {
@@ -27,7 +27,7 @@ export default function Home() {
       alert(JSON.stringify(device))
   }
   
-//opcoes de equipamentos
+//equipamentos
   const typeDevice = [
     {name: 'Notebook', value:'notebook'},
     {name: 'Desktop', value:'desktop'},
@@ -36,15 +36,14 @@ export default function Home() {
     {name: 'Impressora', value:'printer'},
     {name: 'Scanner', value:'scanner'}
   ]
-//opcoes de estado de uso dos equipamentos  
+//opcoes de estado de uso  
   const conditionDevice =[
     {name: 'Tem todas as partes, liga e funciona normalmente', value: 'working'},
     {name: 'Tem todas as partes, mas não liga mais', value: 'notWorking'},
     {name:'Faltam peças, funciona só as vezes ou está quebrado', value: 'broken'}
   ]
 
-  //Formulario inicial
-    //insere os elementos no objeto form
+  //Form
   const [form, setForm] = useState  ({
     name: "",
     email: "",
@@ -58,28 +57,28 @@ export default function Home() {
     neighborhood: "",
     deviceCount: "",
   })
-
+  //insere os elementos no objeto form
   function setList (value, name){
     const newForm = {...form}
     newForm[name]=value
     setForm(newForm)
   }
 
-  //cria os novos compos dinamocos e insere as opcoes escolhidas em um array de objetos
+  //Device
   const [device, setDevice] = useState([])
-  
+  //array de devices
   function rendlerList(value=0){
     const newDevice = Array.from({length: value}, () => ({type:'', condition:''}))
     setDevice(newDevice)
   }
-
+  //inselre os valores nos devices
   function deviceUpdate(value, name, index){
     const newDevice = [...device]
     newDevice[index][name]=value
     setDevice(newDevice)
   }
 
-  //CEP 
+  //consulta cep e insere os dados no form 
   const checkCEP = (e) => {
     const cep = e.currentTarget.value.replace(/\D/g, '')
     if(!cep.length)return
@@ -100,17 +99,19 @@ export default function Home() {
   return (
     <main>
       <Head>
-        <title>Amigo do Bem</title>
-       {/* <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"></link>*/}
+        <title>Doação Digital</title>
         <meta name="description" content="Doaçao de computadores" />
+        <link rel="icon" type="png" href="/imagens/icon.png" />
+        <link rel="icon" href="/images/icon.png" ></link>
       </Head>
+
         <div className='image-logo'>
           <img src="/images/logo.png"/>
         </div>
 
         <section>
           <h3>Dados Pessoais</h3>
-          <form class="form">
+          <form clasName="form">
             <div className="row">
               <Input
                 required
@@ -260,8 +261,9 @@ export default function Home() {
             </button> 
           </form>
         </section>
+
         <div className='image'>
-          <img src="/images/appmasters.png"/>
+          <a href="https://www.appmasters.io/en"><img src="/images/appmasters.png"/></a>
         </div>
       </main>
   )

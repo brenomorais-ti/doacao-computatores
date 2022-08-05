@@ -60,7 +60,7 @@ section h4 {
 input {
     outline: unset;
     padding: 12px;
-    border: 1px solid #07A0C3;
+    border: 2px solid #f0f0f0;
     border-radius: 7px;
 }
 
@@ -125,6 +125,28 @@ button::before {
     margin-bottom: 2rem;
 }
 
+.box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30rem;
+}
+
+.box p {
+    color: #fff;
+    text-align: justify;
+}
+
+.icons {
+    padding: 2rem;
+}
+
+.icons img{
+    width: 2rem;
+    height: 2rem;
+    margin: 0.2rem;
+}
+
 /*----------------------RESPONSIVIDADE----------------*/
 
 /*------------SMARTPHONE-------------*/
@@ -155,6 +177,10 @@ button::before {
         width: 9rem;
         height: 6rem;
     }
+
+    .box {
+        width: 12rem;
+    }    
 }
 
 /*SMARTPHONE-M*/
@@ -184,6 +210,10 @@ button::before {
         width: 9rem;
         height: 6rem;
     }
+
+    .box {
+        width: 15rem;
+    }
 }
 
 /*SMARTPHONE-L*/
@@ -203,6 +233,10 @@ button::before {
     main .image-logo img {
         width: 10rem;
         height: 7rem;
+    }
+
+    .box {
+        width: 17rem;
     }
 }
 
@@ -225,6 +259,10 @@ button::before {
         width: 11rem;
         height: 8rem;
     }
+
+    .box {
+        width: 20rem;
+    }
 }
 
 /*TABLET-M*/
@@ -244,6 +282,10 @@ button::before {
     main .image-logo img {
         width: 12rem;
         height: 9rem;
+    }
+
+    .box {
+        width: 25rem;
     }
 
 }
