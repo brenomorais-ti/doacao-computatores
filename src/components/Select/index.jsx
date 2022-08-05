@@ -1,6 +1,6 @@
 const Select = (props) => {
   return (
-    <>
+    <div className='wrapper-input'>
       <legend>{props.label}</legend>
       <select
         type={props.type} 
@@ -14,7 +14,7 @@ const Select = (props) => {
             {item.name}
           </option>))}
       </select>
-    </>
+    </div>
   )
 }
 

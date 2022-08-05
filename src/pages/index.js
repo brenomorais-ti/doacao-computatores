@@ -104,7 +104,7 @@ export default function Home() {
        {/* <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"></link>*/}
         <meta name="description" content="Doaçao de computadores" />
       </Head>
-      
+
         <h2>Doação de Equipamentos Usados</h2>
         <section>
           <h3>Dados Pessoais</h3>
@@ -215,11 +215,12 @@ export default function Home() {
                   setList(value, name)}} />
             </div>
             
-            <h3>Dados Pessoais</h3>
+            <h3>Dispositivo(s)</h3>
+            <div className="row">
             <Input
                 required
                 size={3} 
-                label={'Quantidade de Dispositivos'}
+                label={'Quantidade'}
                 name={'deviceCount'}
                 type={'number'}
                 placeholder={'Quantidade de Dispositivos'}
@@ -227,19 +228,21 @@ export default function Home() {
                   setList(value, name)}}
                 onChange={
                   (e) => rendlerList(e.currentTarget.value)} />
+            </div>
               {
                 device.map((_, index) => (
-                <div className="row">
-                  <h1>Especificações dos Equipamentos</h1>
+                <div>
+                  <h4>Dispositivo</h4>
+          
                   <Select 
                     required
-                    label={'Equipamento'} 
+                    label={'Tipo'} 
                     name={'type'} 
                     type={'text'}
                     items={typeDevice}
                     onChange={({currentTarget:{value, name}}) => {
                       deviceUpdate(value, name, index)}}/>
-
+            
                   <Select
                     required
                     label={'Estado'} 
@@ -255,6 +258,9 @@ export default function Home() {
             </button> 
           </form>
         </section>
+        <div className='image'>
+          <img src="/images/appmasters.png"/>
+        </div>
       </main>
   )
 }

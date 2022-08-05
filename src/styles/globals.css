@@ -34,6 +34,13 @@ section {
 section h3 {
     color: aliceblue;
     padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+section h4 {
+    color: aliceblue;
+    padding-bottom: 20px;
+    padding-top: 20px;
 }
 
 .form {
@@ -47,7 +54,13 @@ input {
     padding: 12px;
     border: 1px solid #07A0C3;
     border-radius: 7px;
+}
 
+select {
+    outline: unset;
+    padding: 12px;
+    border: 1px solid #07A0C3;
+    border-radius: 7px;
 }
 
 button {
@@ -97,19 +110,59 @@ button::before {
     width: 100%;
 }
 
+.image img{
+    width: 10rem;
+    height: 2rem;
+    margin-top: 2rem ;
+    margin-bottom: 2rem;
+}
+
+/*----------------------RESPONSIVIDADE----------------*/
+
+/*------------SMARTPHONE-------------*/
 /*SMARTPHONE-S*/
-@media (max-width: 250px) {
+@media (min-width: 300px) and (max-width: 399px) {
     section {
-        width: 15rem;
+        width: 14rem;
     }
 
     .row {
         flex-direction: column;
     }
+
+
+    input {
+        width: 11rem;
+    }
+
+    select {
+        width: 12rem;
+    }  
+
 }
 
 /*SMARTPHONE-M*/
-@media (min-width: 251px) and (max-width: 424px) {
+@media (min-width: 400px) and (max-width: 499px) {
+    section {
+        width: 18rem;
+    }
+
+    .row {
+        flex-direction: column;
+    }
+
+
+    input {
+        width: 13rem;
+    }
+
+    select {
+        width: 14rem;
+    }    
+}
+
+/*SMARTPHONE-L*/
+@media (min-width: 500px) and (max-width: 599px) {
     section {
         width: 20rem;
     }
@@ -117,60 +170,90 @@ button::before {
     .row {
         flex-direction: column;
     }
+
+    select {
+        width: 14rem;
+    }    
 }
 
-/*SMARTPHONE-L*/
-@media (min-width: 425px) and (max-width: 499px) {
+/*------------TABLET-------------*/
+/*TABLET-S*/
+@media (min-width: 600px) and (max-width: 699px) {
     section {
-        width: 24rem;
+        width: 30rem;
     }
 
     .row {
         flex-direction: column;
     }
-}
 
-/*-------------------------*/
-/*TABLET-S*/
-@media (min-width: 500px) {
-    section {
-        width: 28rem;
+    select {
+        width: 17rem;
     }
 }
 
 /*TABLET-M*/
-@media (min-width: 600px) {
+@media (min-width: 700px) and (max-width: 799px) {
     section {
-        width: 35rem;
+        width: 30rem;
     }
+
+    .row {
+        flex-direction: column;
+    }
+
+    select {
+        width: 18rem;
+    }
+
 }
 
 /*TABLET-L*/
-@media (min-width: 800px) {
+@media (min-width: 800px) and (max-width: 1023px) {
     section {
-        width: 45rem;
+        width: 35rem;
+    }
+
+    input {
+        width: 13rem;
+    }
+
+    select {
+        width: 22rem;
     }
 }
 
-/*-------------------------*/
+/*------------DESKTOP-------------*/
 /*DESKTOP-S*/
-@media (min-width: 1024px) {
+@media (min-width: 1024px) and (max-width: 1439px) {
     section {
-        width: 50rem;
+        width: 40rem;
+    }
+
+    input {
+        width: 13rem;
     }
 }
 
 /*DESKTOP-M*/
-@media (min-width: 1440px) {
+@media (min-width: 1440px) and (max-width: 1799px) {
     section {
-        width: 55rem;
+        width: 40rem;
+    }
+
+    input {
+        width: 13rem;
     }
 }
 
 /*DESKTOP-L*/
 @media (min-width: 1800px) {
     section {
-        width: 60rem;
+        width: 40rem;
+    }
+
+    input {
+        width: 13rem;
     }
 }
 
