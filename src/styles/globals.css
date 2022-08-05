@@ -40,8 +40,9 @@ section {
 
 section h3 {
     color: aliceblue;
-    padding-bottom: 20px;
-    padding-top: 20px;
+    padding-bottom: 5px;
+    padding-top: 30px;
+    font-size: 1.8rem;
 }
 
 section h4 {
@@ -144,8 +145,11 @@ button::before {
 
     select {
         width: 12rem;
-    }  
+    }
 
+    section h3 {
+        font-size: 1.1rem;
+    }
 }
 
 /*SMARTPHONE-M*/
@@ -165,7 +169,11 @@ button::before {
 
     select {
         width: 14rem;
-    }    
+    }
+    
+    section h3 {
+        font-size: 1.4rem;
+    }
 }
 
 /*SMARTPHONE-L*/
