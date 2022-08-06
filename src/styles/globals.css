@@ -43,12 +43,14 @@ section h3 {
     padding-bottom: 5px;
     padding-top: 30px;
     font-size: 1.8rem;
+    text-align: center;
 }
 
 section h4 {
     color: aliceblue;
-    padding-bottom: 20px;
-    padding-top: 20px;
+    text-align: center;
+    padding-bottom: 5px;
+    padding-top: 40px;
 }
 
 .form {
@@ -56,6 +58,7 @@ section h4 {
     flex-direction: column;
     align-items: center;
 }
+
 
 input {
     outline: unset;
@@ -107,6 +110,15 @@ button::before {
     skew(-10deg);
 }
 
+button:hover::before {
+    transform: translate(300px)
+                skew(-20deg);
+}
+
+button {
+    background: #00f7ff;
+}
+
 .row {
     display: flex;
 }
@@ -114,10 +126,12 @@ button::before {
 .wrapper-input {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    color: #fff;
     margin: 0.5rem;
     width: 100%;
 }
-
+/*page instituições*/
 .image img{
     width: 10rem;
     height: 2rem;
@@ -153,7 +167,7 @@ button::before {
 /*SMARTPHONE-S*/
 @media (max-width: 399px) {
     section {
-        width: 14rem;
+        width: 16rem;
     }
 
     .row {
@@ -163,10 +177,12 @@ button::before {
 
     input {
         width: 11rem;
+        height: 2rem;
     }
 
     select {
         width: 12rem;
+        height: 2rem;
     }
 
     section h3 {
@@ -186,7 +202,7 @@ button::before {
 /*SMARTPHONE-M*/
 @media (min-width: 400px) and (max-width: 499px) {
     section {
-        width: 18rem;
+        width: 19rem;
     }
 
     .row {
@@ -196,10 +212,12 @@ button::before {
 
     input {
         width: 13rem;
+        height: 2.1rem;
     }
 
     select {
         width: 14rem;
+        height: 2.1rem;
     }
     
     section h3 {
@@ -222,12 +240,18 @@ button::before {
         width: 20rem;
     }
 
+    input {
+        width: 14rem;
+        height: 2.2rem;
+    }
+
     .row {
         flex-direction: column;
     }
 
     select {
         width: 14rem;
+        height: 2.2rem;
     }
     
     main .image-logo img {
@@ -247,12 +271,18 @@ button::before {
         width: 30rem;
     }
 
+    input {
+        width: 15rem;
+        height: 2.4rem;
+    }
+
     .row {
         flex-direction: column;
     }
 
     select {
         width: 17rem;
+        height: 2.4rem;
     }
 
     main .image-logo img {
@@ -269,6 +299,11 @@ button::before {
 @media (min-width: 700px) and (max-width: 799px) {
     section {
         width: 30rem;
+    }
+
+    input {
+        width: 15rem;
+        height: 2.5rem;
     }
 
     .row {

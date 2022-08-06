@@ -4,9 +4,6 @@ import Input from '../components/Input'
 import Select from '../components/Select'
 import axios from 'axios'
 
-
-
-
 export default function Home() {
 
   const onSubmit = () => {
@@ -220,17 +217,17 @@ export default function Home() {
             
             <h3>Dispositivo(s)</h3>
             <div className="row">
-            <Input
-                required
-                size={3} 
-                label={'Quantidade'}
-                name={'deviceCount'}
-                type={'number'}
-                placeholder={'Quantidade de Dispositivos'}
-                onInput={({currentTarget:{value, name}}) => {
-                  setList(value, name)}}
-                onChange={
-                  (e) => rendlerList(e.currentTarget.value)} />
+              <Input
+                  required
+                  size={3} 
+                  label={'Quantidade'}
+                  name={'deviceCount'}
+                  type={'number'}
+                  placeholder={'Quantidade de Dispositivos'}
+                  onInput={({currentTarget:{value, name}}) => {
+                    setList(value, name)}}
+                  onChange={
+                    (e) => rendlerList(e.currentTarget.value)} />
             </div>
               {
                 device.map((_, index) => (
@@ -255,11 +252,11 @@ export default function Home() {
                     onChange={({currentTarget:{value, name}}) => {
                       deviceUpdate(value, name, index)}}/>
                 </div>))
-              }
-            <button className='button' onClick={onSubmit}>
-              SALVAR
-            </button> 
+              } 
           </form>
+          <button className='button' onClick={onSubmit}>
+              SALVAR
+            </button>
         </section>
 
         <div className='image'>
