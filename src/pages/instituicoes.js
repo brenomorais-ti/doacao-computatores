@@ -1,4 +1,8 @@
-import Head from "next/head";
+import Head from "next/head"
+import Link from 'next/link'
+import menu from '../styles/Menu.module.css'
+import instituicoes from '../styles/Instituicoes.module.css'
+
 
 const ufersa = {
     sigla: "UFERSA",
@@ -73,64 +77,80 @@ export default function Instituicoes () {
             <div className='image-logo'>
                 <img src="/images/logo.png"/>
             </div>
+
+            <nav className={menu.menu}>
+                <ul>
+                    <li>
+                    <Link href="/">
+                        <a>DOAÇÃO</a>
+                    </Link>
+                    </li>
+                    <li>
+                    <Link href="/instituicoes">
+                        <a>PARCEIROS</a>
+                    </Link>
+                    </li>
+                </ul>
+            </nav>
+
             <section>
-                <div className="box">
+                <div className={instituicoes.box}>
                     <h3>{ufersa.sigla}</h3>
                     <p>({ufersa.cidade} / {ufersa.bairro})</p>
                     <a href="https://ufersa.edu.br/"><h4>ufersa.edu.br</h4></a>
                     <h4>{ufersa.nome}</h4>
                     <p>{ufersa.sobre}</p>
     
-                    <div className="icons">
+                    <div className={instituicoes.icons}>
                         <a href="https://www.facebook.com/Ufersa/"><img src="/images/facebook.png"/></a>
                         <a href="https://www.instagram.com/ufersa/"><img src="/images/instagram.png"/></a>
                     </div>
                 </div>
 
-                <div className="box">
+                <div className={instituicoes.box}>
                     <h3>{uern.sigla}</h3>
                     <p>({uern.cidade} / {uern.bairro})</p>
                     <a href="https://portal.uern.br"><h4>portal.uern.br</h4></a>
                     <h4>{uern.nome}</h4>
                     <p>{uern.sobre}</p>
-                    <div className="icons">
+                    <div className={instituicoes.icons}>
                         <a href="https://www.facebook.com/UERNoficial/"><img src="/images/facebook.png"/></a>
                         <a href="https://www.instagram.com/uernoficial/"><img src="/images/instagram.png"/></a>
                     </div>
                 </div>
     
-                <div className="box">
+                <div className={instituicoes.box}>
                     <h3>{ifrn.sigla}</h3>
                     <p>({ifrn.cidade} / {ifrn.bairro})</p>
                     <a href="https://portal.ifrn.edu.br"><h4>portal.ifrn.edu.br</h4></a>
                     <h4>{ifrn.nome}</h4>
                     <p>{ifrn.sobre}</p>
-                    <div className="icons">
+                    <div className={instituicoes.icons}>
                         <a href="https://www.facebook.com/ifrnoficial/"><img src="/images/facebook.png"/></a>
                         <a href="https://www.instagram.com/ifrnoficial/"><img src="/images/instagram.png"/></a>
                     </div>
                 </div>
    
-                <div className="box">
+                <div className={instituicoes.box}>
                     <h3>{unopar.sigla}</h3>
                     <p>({unopar.cidade} / {ifrn.bairro})</p>
                     <a href="https://www.unopar.com.br"><h4>unopar.com.br</h4></a>
                     <h4>{unopar.nome}</h4>
                     <p>{unopar.sobre}</p>
-                    <div className="icons">
+                    <div className={instituicoes.icons}>
                         <a href="https://www.facebook.com/unoparuniversidade"><img src="/images/facebook.png"/></a>
                         <a href="https://www.instagram.com/unopar"><img src="/images/instagram.png"/></a>
                         <a href="https://api.whatsapp.com/send?phone=5511994326167&text=%5BTicket%20UNP0014%5D%20-%20Ol%C3%A1%2C%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20a%20Unopar"><img src="/images/whatsapp.png"/></a>
                     </div>
                 </div>
 
-                <div className="box">
+                <div className={instituicoes.box}>
                     <h3>{unp.sigla}</h3>
                     <p>({unp.cidade} / {ifrn.bairro})</p>
                     <a href="https://unp.br/"><h4>unp.br</h4></a>
                     <h4>{unp.nome}</h4>
                     <p>{unp.sobre}</p>
-                    <div className="icons">
+                    <div className={instituicoes.icons}>
                         <a href="https://www.facebook.com/universidadepotiguar"><img src="/images/facebook.png"/></a>
                         <a href="https://www.instagram.com/universidadepotiguar"><img src="/images/instagram.png"/></a>
                     </div>

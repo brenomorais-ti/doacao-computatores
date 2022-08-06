@@ -131,34 +131,12 @@ button {
     margin: 0.5rem;
     width: 100%;
 }
-/*page instituições*/
-.image img{
+
+.image img {
     width: 10rem;
     height: 2rem;
     margin-top: 2rem ;
     margin-bottom: 2rem;
-}
-
-.box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 30rem;
-}
-
-.box p {
-    color: #fff;
-    text-align: justify;
-}
-
-.icons {
-    padding: 2rem;
-}
-
-.icons img{
-    width: 2rem;
-    height: 2rem;
-    margin: 0.2rem;
 }
 
 /*----------------------RESPONSIVIDADE----------------*/
@@ -194,9 +172,7 @@ button {
         height: 6rem;
     }
 
-    .box {
-        width: 12rem;
-    }    
+      
 }
 
 /*SMARTPHONE-M*/
@@ -228,10 +204,6 @@ button {
         width: 9rem;
         height: 6rem;
     }
-
-    .box {
-        width: 15rem;
-    }
 }
 
 /*SMARTPHONE-L*/
@@ -257,10 +229,6 @@ button {
     main .image-logo img {
         width: 10rem;
         height: 7rem;
-    }
-
-    .box {
-        width: 17rem;
     }
 }
 
@@ -290,9 +258,7 @@ button {
         height: 8rem;
     }
 
-    .box {
-        width: 20rem;
-    }
+    
 }
 
 /*TABLET-M*/
@@ -318,11 +284,6 @@ button {
         width: 12rem;
         height: 9rem;
     }
-
-    .box {
-        width: 25rem;
-    }
-
 }
 
 /*TABLET-L*/

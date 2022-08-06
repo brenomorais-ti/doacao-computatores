@@ -1,11 +1,13 @@
 import Head from 'next/head'
 import { useState } from 'react'
+import Link from 'next/link'
 import Input from '../components/Input'
 import Select from '../components/Select'
 import axios from 'axios'
+import menu from '../styles/Menu.module.css'
 
 export default function Home() {
-
+ //onde a magica acontece rsrsr
   const onSubmit = () => {
    const payload = {...form, devices: [...device]} //junção do form com o devices
 
@@ -33,6 +35,7 @@ export default function Home() {
     {name: 'Impressora', value:'printer'},
     {name: 'Scanner', value:'scanner'}
   ]
+
 //opcoes de estado de uso  
   const conditionDevice =[
     {name: 'Tem todas as partes, liga e funciona normalmente', value: 'working'},
@@ -52,7 +55,10 @@ export default function Home() {
     neighborhood: "",
     deviceCount: "",
   })
+
   //insere os elementos no objeto form
+  //Verifica se o value é vazio, se for o campo não é inserido no objeto
+  //a verificação é somente para os campos email e complemento
   function setList (value, name){
     const newForm = {...form}
     if (value !== ""){
@@ -105,6 +111,21 @@ export default function Home() {
         <div className='image-logo'>
           <img src="/images/logo.png"/>
         </div>
+
+        <nav className={menu.menu}>
+          <ul>
+            <li>
+              <Link href="/">
+                <a>DOAÇÃO</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/instituicoes">
+                <a>PARCEIROS</a>
+              </Link>
+            </li>
+          </ul>
+        </nav>
 
         <section>
           <h3>Dados Pessoais</h3>
@@ -231,27 +252,28 @@ export default function Home() {
             </div>
               {
                 device.map((_, index) => (
-                <div>
-                  <h4>Dispositivo</h4>
-          
-                  <Select 
-                    required
-                    label={'Tipo'} 
-                    name={'type'} 
-                    type={'text'}
-                    items={typeDevice}
-                    onChange={({currentTarget:{value, name}}) => {
-                      deviceUpdate(value, name, index)}}/>
+                  <div>
+                    <h4>Dispositivo</h4>
             
-                  <Select
-                    required
-                    label={'Estado'} 
-                    name={'condition'} 
-                    type={'text'}
-                    items={conditionDevice}
-                    onChange={({currentTarget:{value, name}}) => {
-                      deviceUpdate(value, name, index)}}/>
-                </div>))
+                    <Select 
+                      required
+                      label={'Tipo'} 
+                      name={'type'} 
+                      type={'text'}
+                      items={typeDevice}
+                      onChange={({currentTarget:{value, name}}) => {
+                        deviceUpdate(value, name, index)}}/>
+              
+                    <Select
+                      required
+                      label={'Estado'} 
+                      name={'condition'} 
+                      type={'text'}
+                      items={conditionDevice}
+                      onChange={({currentTarget:{value, name}}) => {
+                        deviceUpdate(value, name, index)}}/>
+                  </div>)
+                )
               } 
           </form>
           <button className='button' onClick={onSubmit}>

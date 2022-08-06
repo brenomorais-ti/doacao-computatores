@@ -1,0 +1,81 @@
+
+.box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30rem;
+}
+
+.box p {
+    color: #fff;
+    text-align: justify;
+}
+
+.icons {
+    padding: 2rem;
+}
+
+.icons img {
+    width: 2rem;
+    height: 2rem;
+    margin: 0.2rem;
+}
+
+/*----------------------RESPONSIVIDADE----------------*/
+
+/*------------SMARTPHONE-------------*/
+/*SMARTPHONE-S*/
+@media (max-width: 399px) {
+    .box {
+        width: 12rem;
+    }  
+}
+
+/*SMARTPHONE-M*/
+@media (min-width: 400px) and (max-width: 499px) {
+    .box {
+        width: 15rem;
+    }
+}
+
+/*SMARTPHONE-L*/
+@media (min-width: 500px) and (max-width: 599px) {
+    .box {
+        width: 17rem;
+    }
+}
+
+/*------------TABLET-------------*/
+/*TABLET-S*/
+@media (min-width: 600px) and (max-width: 699px) {
+    .box {
+        width: 20rem;
+    }
+}
+/*TABLET-M*/
+@media (min-width: 700px) and (max-width: 799px) {
+    .box {
+        width: 25rem;
+    }
+}
+
+/*TABLET-L*/
+@media (min-width: 800px) and (max-width: 1023px) {
+   
+}
+
+/*------------DESKTOP-------------*/
+/*DESKTOP-S*/
+@media (min-width: 1024px) and (max-width: 1439px) {
+  
+}
+
+/*DESKTOP-M*/
+@media (min-width: 1440px) and (max-width: 1799px) {
+   
+}
+
+/*DESKTOP-L*/
+@media (min-width: 1800px) {
+    
+}
