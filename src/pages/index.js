@@ -9,21 +9,20 @@ import menu from '../styles/Menu.module.css'
 export default function Home() {
  //onde a magica acontece rsrsr
   const onSubmit = () => {
-   const payload = {...form, devices: [...device]} //junção do form com o devices
+    const payload = {...form, devices: [...device]} //junção do form com o devices
 
-   axios.post('https://doar-computadores-test.herokuapp.com/donation', payload)
-   .then(response => {
-     alert(JSON.stringify(response.data))
-     console.log(response.data)
-   })
-   .catch((error) => {
-    console.log(error)
-    if(error.response.status == 400)
-      alert(error.response.data.errorMessage)
-    if(error.response.status == (500 || 501))
-      alert('O servidor falhou em responder. Tente mais tarde.')
-  })
-      alert(JSON.stringify(device))
+    axios.post('https://doar-computadores-test.herokuapp.com/donation', payload)
+    .then(response => {
+      swal ( "Ok" ,  "Enviado com sucesso!!!" ,  "success" )
+      console.log(response.data)
+    })
+    .catch((error) => {
+      console.log(error)
+      if(error.response.status == 400)
+        swal ( "Opis" , error.response.data.errorMessage,  "error" )
+      if(error.response.status == (500 || 501))
+        alert('O servidor falhou em responder. Tente mais tarde.')
+    })
   }
   
 //equipamentos
@@ -99,6 +98,8 @@ export default function Home() {
       .catch(() => alert("CEP invalido"))
 }
 
+  const notify = ( ) => toast ( "Uau que fácil!" ) ; 
+
   return (
     <main>
       <Head>
@@ -106,12 +107,13 @@ export default function Home() {
         <meta name="description" content="Doaçao de computadores" />
         <link rel="icon" type="png" href="/imagens/icon.png" />
         <link rel="icon" href="/images/icon.png" ></link>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
       </Head>
 
         <div className='image-logo'>
           <img src="/images/logo.png"/>
         </div>
-
+       
         <nav className={menu.menu}>
           <ul>
             <li>
@@ -129,7 +131,7 @@ export default function Home() {
 
         <section>
           <h3>Dados Pessoais</h3>
-          <form clasName="form">
+          <form className="form">
             <div className="row">
               <Input
                 required
