@@ -136,6 +136,10 @@ export default function Instituicoes () {
                     </div>
                 </div>
             </section>
+
+            <div className='image'>
+                <a href="https://www.appmasters.io/en"><img src="/images/appmasters.png"/></a>
+            </div>
         </main>
     )
 }

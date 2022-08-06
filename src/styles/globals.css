@@ -112,7 +112,7 @@ button::before {
 
 button:hover::before {
     transform: translate(300px)
-                skew(-20deg);
+                skew(-10deg);
 }
 
 button {
@@ -344,11 +344,15 @@ button {
 /*DESKTOP-S*/
 @media (min-width: 1024px) and (max-width: 1439px) {
     section {
-        width: 40rem;
+        width: 35rem;
     }
 
     input {
         width: 13rem;
+    }
+
+    select {
+        width: 22rem;
     }
 }
 
@@ -361,6 +365,10 @@ button {
     input {
         width: 13rem;
     }
+
+    select {
+        width: 23rem;
+    }
 }
 
 /*DESKTOP-L*/
@@ -371,6 +379,10 @@ button {
 
     input {
         width: 13rem;
+    }
+
+    select {
+        width: 23rem;
     }
 }
 

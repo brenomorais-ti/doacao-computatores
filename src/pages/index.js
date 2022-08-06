@@ -43,22 +43,22 @@ export default function Home() {
   //Form
   const [form, setForm] = useState  ({
     name: "",
-    email: "",
     phone: "",
     zip: "",
     city: "",
     state: "",
     streetAddress: "",
     number: "",
-    complement: "",
     neighborhood: "",
     deviceCount: "",
   })
   //insere os elementos no objeto form
   function setList (value, name){
     const newForm = {...form}
-    newForm[name]=value
-    setForm(newForm)
+    if (value !== ""){
+      newForm[name]=value
+      setForm(newForm)
+    }
   }
 
   //Device
