@@ -250,7 +250,7 @@ const [requiredFields, setRequiredFilds] = useState({
                 label={'Complemento'} 
                 name={'complement'}
                 type={'text'}
-                placeholder={'Número'} 
+                placeholder={'Complemento'} 
                 onChange={({currentTarget:{value, name}}) => {
                   setList(value, name)}} />
             
@@ -260,7 +260,7 @@ const [requiredFields, setRequiredFilds] = useState({
                 label={'Bairro'} 
                 name={'neighborhood'} 
                 type={'text'}
-                placeholder={'Ponto de referência'} 
+                placeholder={'Bairro'} 
                 onChange={({currentTarget:{value, name}}) => {
                   setList(value, name)}} />
             </div>
@@ -273,7 +273,7 @@ const [requiredFields, setRequiredFilds] = useState({
                   label={'Quantidade'}
                   name={'deviceCount'}
                   type={'number'}
-                  placeholder={'Quantidade de Dispositivos'}
+                  placeholder={'Quantidade'}
                   onInput={({currentTarget:{value, name}}) => {
                     setList(value, name)}}
                   onChange={
