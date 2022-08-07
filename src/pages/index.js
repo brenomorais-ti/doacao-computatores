@@ -13,7 +13,7 @@ export default function Home() {
   const onSubmit = async (e) => {
     e.preventDefault()
     const payload = {...form, devices: [...device]} //junção do form com o devices
-    for (const campo in payload){
+    for (const campo in payload){ //retira os atributos vazios do objeto
       if(payload[campo] === ""){
         delete payload[campo]
       }
@@ -23,7 +23,6 @@ export default function Home() {
       await swal ( "Ok" ,  "Enviado com sucesso!!!" ,  "success" )
       window.location.reload()
     } catch (error) { 
-        console.log(error)
         if(error.response.status == 400)
           if(Array.isArray(error.response.data.requiredFields)){
            const newRequiredFields = {...requiredFields}
@@ -37,7 +36,7 @@ export default function Home() {
             }
           }
           setRequiredFilds(newRequiredFields)
-          swal ( "Preencha todos os campos!" , error.response.data.requiredFields.join(', '),  "error" )
+          swal ( "Ops" , "Preencha todos os campos!",  "error" )
           } else {
             swal ( "Ops" , error.response.data.errorMessage,  "error" )
           }
@@ -114,7 +113,7 @@ export default function Home() {
         }
         setForm(response)
       })
-      .catch(() => alert("CEP invalido"))
+      .catch(() => swal ("Ops", "CEP Invalido!",  "error" ))
 }
 //para controle dos campos obrigatorios
 const [requiredFields, setRequiredFilds] = useState({
@@ -151,7 +150,7 @@ const [requiredFields, setRequiredFilds] = useState({
               </Link>
             </li>
             <li>
-              <Link href="/instituicoes">
+              <Link href="/institutions">
                 <a>PARCEIROS</a>
               </Link>
             </li>
