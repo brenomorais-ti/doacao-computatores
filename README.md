@@ -1,8 +1,11 @@
 # Doação Digital
- 
+##  (FRONT-END)
+
  Projeto deenvolvido para seleção de estágiario da APP MASTERS
+
+ ### Deploy do projeto https://doacao-computatores-git-main-brenomorais-ti.vercel.app/
  
-## https://www.appmasters.io/
+## App Master https://www.appmasters.io/
  
 🎯 O objetivo deste projeto é ajudar pessoas que desejam doar computadores usados, e que estes sejam destinados às pessoas que estejam precisando, ao invés de irem para reciclagem.
 
