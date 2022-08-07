@@ -5,30 +5,47 @@ import Input from '../components/Input'
 import Select from '../components/Select'
 import axios from 'axios'
 import menu from '../styles/Menu.module.css'
+import button from '../styles/Button.module.css'
+
 
 export default function Home() {
  //onde a magica acontece rsrsr
-  const onSubmit = () => {
+  const onSubmit = async (e) => {
+    e.preventDefault()
     const payload = {...form, devices: [...device]} //junção do form com o devices
-
-    axios.post('https://doar-computadores-rafael.herokuapp.com/donation', payload)
-    .then(response => {
-      swal ( "Ok" ,  "Enviado com sucesso!!!" ,  "success" )
-      console.log(response.data)
-    })
-    .catch((error) => {
-      console.log(error)
-      if(error.response.status == 400)
-        if(Array.isArray(error.response.data.missingFields)){
-          swal ( "Preencha todos os campos!" , error.response.data.missingFields.join(', '),  "error" )
-        } else {
-          swal ( "Ops" , error.response.data.errorMessage,  "error" )
-        }
-      if(error.response.status == (500 || 501))
-        swal ("Ops", "O servidor falhou em responder. Tente mais tarde.",  "error" )
-    })
+    for (const campo in payload){
+      if(payload[campo] === ""){
+        delete payload[campo]
+      }
+    }
+    try {
+      const response = await axios.post('https://doar-computadores-rafael.herokuapp.com/donation', payload)
+      await swal ( "Ok" ,  "Enviado com sucesso!!!" ,  "success" )
+      window.location.reload()
+    } catch (error) { 
+        console.log(error)
+        if(error.response.status == 400)
+          if(Array.isArray(error.response.data.requiredFields)){
+           const newRequiredFields = {...requiredFields}
+           const response = error.response.data.requiredFields
+           for (let field of response){ // marca todos os campos obrigatorios vazios
+              newRequiredFields[field] = true
+           }
+           for (let field in newRequiredFields){ //desmarca todos os campos preenchidos
+            if (!response.includes(field)){
+              newRequiredFields[field] = false
+            }
+          }
+          setRequiredFilds(newRequiredFields)
+          swal ( "Preencha todos os campos!" , error.response.data.requiredFields.join(', '),  "error" )
+          } else {
+            swal ( "Ops" , error.response.data.errorMessage,  "error" )
+          }
+          if(error.response.status == (500 || 501))
+            swal ("Ops", "O servidor falhou em responder. Tente mais tarde.",  "error" )
+      }
   }
-  
+
 //equipamentos
   const typeDevice = [
     {name: 'Notebook', value:'notebook'},
@@ -58,16 +75,14 @@ export default function Home() {
     neighborhood: "",
     deviceCount: "",
   })
-
+ 
   //insere os elementos no objeto form
   //Verifica se o value é vazio, se for o campo não é inserido no objeto
   //a verificação é somente para os campos email e complemento
   function setList (value, name){
     const newForm = {...form}
-    if (value !== ""){
       newForm[name]=value
       setForm(newForm)
-    }
   }
 
   //Device
@@ -101,6 +116,18 @@ export default function Home() {
       })
       .catch(() => alert("CEP invalido"))
 }
+//para controle dos campos obrigatorios
+const [requiredFields, setRequiredFilds] = useState({
+  name: false,
+  phone: false,
+  zip: false,
+  city: false,
+  state: false,
+  streetAddress: false,
+  number: false,
+  neighborhood: false,
+  deviceCount: false
+})
 
   return (
     <main>
@@ -133,10 +160,10 @@ export default function Home() {
 
         <section>
           <h3>Dados Pessoais</h3>
-          <form className="form">
+          <form className="form" onSubmit={onSubmit}>
             <div className="row">
               <Input
-                required
+                marked={requiredFields.name}
                 label={'Nome'}
                 name={'name'} 
                 type={'text'}
@@ -155,7 +182,7 @@ export default function Home() {
 
             <div className="row">
               <Input
-                required
+                marked={requiredFields.phone}
                 label={'Telefone'} 
                 name={'phone'} 
                 type={'text'}
@@ -164,7 +191,7 @@ export default function Home() {
                   setList(value, name)}} />
             
               <Input
-                required
+                marked={requiredFields.zip}
                 label={'CEP'} 
                 name={'zip'} 
                 type={'text'}
@@ -176,7 +203,7 @@ export default function Home() {
 
             <div className="row">
               <Input 
-                required
+                marked={requiredFields.city}
                 value={form.city}
                 label={'Cidade'} 
                 name={'city'} 
@@ -186,7 +213,7 @@ export default function Home() {
                   setList(value, name)}} />
             
               <Input
-                required
+                marked={requiredFields.state}
                 size={2} 
                 value={form.state}
                 label={'UF'} 
@@ -199,7 +226,7 @@ export default function Home() {
 
             <div className="row">
               <Input 
-                required
+                marked={requiredFields.streetAddress}
                 value={form.streetAddress}
                 label={'Endereço'} 
                 name={'streetAddress'} 
@@ -209,7 +236,7 @@ export default function Home() {
                   setList(value, name)}} />
            
               <Input
-                required
+                marked={requiredFields.number}
                 size={5} 
                 label={'Nº'} 
                 name={'number'}
@@ -221,7 +248,6 @@ export default function Home() {
 
             <div className="row">
               <Input
-                required
                 label={'Complemento'} 
                 name={'complement'}
                 type={'text'}
@@ -230,7 +256,7 @@ export default function Home() {
                   setList(value, name)}} />
             
               <Input
-                required
+                marked={requiredFields.neighborhood}
                 value={form.neighborhood}
                 label={'Bairro'} 
                 name={'neighborhood'} 
@@ -243,7 +269,7 @@ export default function Home() {
             <h3>Dispositivo(s)</h3>
             <div className="row">
               <Input
-                  required
+                  marked={requiredFields.deviceCount}
                   size={3} 
                   label={'Quantidade'}
                   name={'deviceCount'}
@@ -260,7 +286,6 @@ export default function Home() {
                     <h4>Dispositivo</h4>
             
                     <Select 
-                      required
                       label={'Tipo'} 
                       name={'type'} 
                       type={'text'}
@@ -269,7 +294,6 @@ export default function Home() {
                         deviceUpdate(value, name, index)}}/>
               
                     <Select
-                      required
                       label={'Estado'} 
                       name={'condition'} 
                       type={'text'}
@@ -279,10 +303,11 @@ export default function Home() {
                   </div>)
                 )
               } 
+            <input className={button.button} type="submit"
+              value="enviar"
+            />
           </form>
-          <button className='button' onClick={onSubmit}>
-              SALVAR
-            </button>
+          
         </section>
 
         <div className='image'>

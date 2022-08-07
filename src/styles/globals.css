@@ -65,6 +65,7 @@ input {
     padding: 12px;
     border: 2px solid #f0f0f0;
     border-radius: 7px;
+    font-size: 1.2rem;
 }
 
 select {
@@ -72,51 +73,7 @@ select {
     padding: 12px;
     border: 1px solid #07A0C3;
     border-radius: 7px;
-}
-
-button {
-    padding: 12px 30px;
-    border: none;
-    position: relative;
-    cursor: pointer;
-    box-sizing: border-box;
-    overflow: hidden;
-    background: #3f3f3f;
-    border-radius: 5px;
-    min-width: 200px;
-    color: #fff;
-    z-index: 0;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    transition: all 0.3s;
-    font-weight: 600;
-}
-
-button::before {
-    content: '';
-    position: absolute;
-    display: block;
-    top: 0;
-    left: -50px;
-    width: 70%;
-    height: 100%;
-    background: linear-gradient(
-        90deg, transparent,
-        #ffffff75, transparent
-    );
-    transition: all 1s;
-    z-index: -1;
-    transform: translateX(-120px)
-    skew(-10deg);
-}
-
-button:hover::before {
-    transform: translate(300px)
-                skew(-10deg);
-}
-
-button {
-    background: #00f7ff;
+    font-size: 1.2rem;
 }
 
 .row {
@@ -156,11 +113,13 @@ button {
     input {
         width: 11rem;
         height: 2rem;
+        font-size: 0.7rem;
     }
 
     select {
         width: 12rem;
-        height: 2rem;
+        height: 2.35rem;
+        font-size: 0.7rem;
     }
 
     section h3 {
@@ -187,11 +146,13 @@ button {
     input {
         width: 13rem;
         height: 2.1rem;
+        font-size: 0.7rem;
     }
 
     select {
         width: 14rem;
-        height: 2.1rem;
+        height: 2.4rem;
+        font-size: 0.7rem;
     }
     
     section h3 {
@@ -213,6 +174,7 @@ button {
     input {
         width: 14rem;
         height: 2.2rem;
+        font-size: 0.7rem;
     }
 
     .row {
@@ -221,7 +183,8 @@ button {
 
     select {
         width: 14rem;
-        height: 2.2rem;
+        height: 2.4rem;
+        font-size: 0.7rem;
     }
     
     main .image-logo img {
@@ -240,6 +203,7 @@ button {
     input {
         width: 15rem;
         height: 2.4rem;
+        font-size: 0.8rem;
     }
 
     .row {
@@ -248,7 +212,8 @@ button {
 
     select {
         width: 17rem;
-        height: 2.4rem;
+        height: 2.5rem;
+        font-size: 0.8rem;
     }
 
     main .image-logo img {
@@ -266,6 +231,7 @@ button {
     input {
         width: 15rem;
         height: 2.5rem;
+        font-size: 1rem;
     }
 
     .row {
@@ -274,6 +240,7 @@ button {
 
     select {
         width: 18rem;
+        font-size: 1rem;
     }
 
     main .image-logo img {
@@ -301,7 +268,7 @@ button {
 /*DESKTOP-S*/
 @media (min-width: 1024px) and (max-width: 1439px) {
     section {
-        width: 35rem;
+        width: 40rem;
     }
 
     input {
@@ -316,7 +283,7 @@ button {
 /*DESKTOP-M*/
 @media (min-width: 1440px) and (max-width: 1799px) {
     section {
-        width: 40rem;
+        width: 45rem;
     }
 
     input {
@@ -331,7 +298,7 @@ button {
 /*DESKTOP-L*/
 @media (min-width: 1800px) {
     section {
-        width: 40rem;
+        width: 50rem;
     }
 
     input {
