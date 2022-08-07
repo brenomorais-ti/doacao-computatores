@@ -19,9 +19,13 @@ export default function Home() {
     .catch((error) => {
       console.log(error)
       if(error.response.status == 400)
-        swal ( "Opis" , error.response.data.errorMessage,  "error" )
+        if(Array.isArray(error.response.data.missingFields)){
+          swal ( "Ops" , error.response.data.missingFields.join(', '),  "error" )
+        } else {
+          swal ( "Ops" , error.response.data.errorMessage,  "error" )
+        }
       if(error.response.status == (500 || 501))
-        alert('O servidor falhou em responder. Tente mais tarde.')
+        swal ("Ops", "O servidor falhou em responder. Tente mais tarde.",  "error" )
     })
   }
   
@@ -97,8 +101,6 @@ export default function Home() {
       })
       .catch(() => alert("CEP invalido"))
 }
-
-  const notify = ( ) => toast ( "Uau que fácil!" ) ; 
 
   return (
     <main>
@@ -286,6 +288,6 @@ export default function Home() {
         <div className='image'>
           <a href="https://www.appmasters.io/en"><img src="/images/appmasters.png"/></a>
         </div>
-      </main>
+    </main>
   )
 }
