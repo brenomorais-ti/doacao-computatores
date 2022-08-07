@@ -56,6 +56,12 @@ Ferramentas usadas para criar o projeto
 
 ## ⚙️ Principais Telas
 
+<img src="https://github.com/brenomorais-ti/doacao-computatores/blob/main/telas/1.png" width="300px">
+<img src="https://github.com/brenomorais-ti/doacao-computatores/blob/main/telas/2.png" width="300px">
+<img src="https://github.com/brenomorais-ti/doacao-computatores/blob/main/telas/3.png" width="300px">
+<img src="https://github.com/brenomorais-ti/doacao-computatores/blob/main/telas/4.png" width="300px">
+<img src="https://github.com/brenomorais-ti/doacao-computatores/blob/main/telas/5.png" width="300px">
+<img src="https://github.com/brenomorais-ti/doacao-computatores/blob/main/telas/6.png" width="300px">
 
 
 ## 🎁 Expressões de gratidão
