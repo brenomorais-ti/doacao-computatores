@@ -11,7 +11,7 @@ export default function Home() {
   const onSubmit = () => {
     const payload = {...form, devices: [...device]} //junção do form com o devices
 
-    axios.post('https://doar-computadores-test.herokuapp.com/donation', payload)
+    axios.post('https://doar-computadores-rafael.herokuapp.com/donation', payload)
     .then(response => {
       swal ( "Ok" ,  "Enviado com sucesso!!!" ,  "success" )
       console.log(response.data)
