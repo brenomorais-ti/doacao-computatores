@@ -20,7 +20,7 @@ export default function Home() {
       console.log(error)
       if(error.response.status == 400)
         if(Array.isArray(error.response.data.missingFields)){
-          swal ( "Ops" , error.response.data.missingFields.join(', '),  "error" )
+          swal ( "Preencha todos os campos!" , error.response.data.missingFields.join(', '),  "error" )
         } else {
           swal ( "Ops" , error.response.data.errorMessage,  "error" )
         }
